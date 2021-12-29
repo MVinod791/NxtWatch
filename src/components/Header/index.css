@@ -1,0 +1,15 @@
+a {
+  text-decoration: none;
+}
+span {
+  padding-left: 10px;
+}
+.animate:hover {
+  animation: rotate 3s;
+}
+.blacked {
+  color: black;
+}
+.whiter {
+  color: white;
+}
