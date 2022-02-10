@@ -39,6 +39,10 @@ export const ContentContainer = styled.div`
   width: 70%;
   margin-left: 0px;
 `
+export const BannerContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
 export const BannerBgContainer = styled.div`
   background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
   background-size: cover;
@@ -70,6 +74,17 @@ export const CustomButton = styled.button`
   font-family: 'Roboto';
   font-weight: 500;
 `
+export const CustomCloseButton = styled.button`
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: #424242;
+  font-size: 20px;
+
+  font-weight: 500;
+`
+
 export const SearchContainer = styled.div`
   padding-top: 8px;
   padding-bottom: 8px;

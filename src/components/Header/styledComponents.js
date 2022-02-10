@@ -1,4 +1,13 @@
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
+
+const FadeIn = keyframes`
+    0%{
+        opacity:0;
+    }
+    100%{
+        opacity:1;
+    }
+`
 
 export const NavBar = styled.nav`
   display: flex;
@@ -88,4 +97,42 @@ export const LogOutDesktopButton = styled.button`
   margin-left: 14px;
   cursor: pointer;
   outline: none;
+`
+export const ListContainer = styled.ul`
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  background: ${props => props.bgColor};
+  width: 103%;
+  height: 105vh;
+  top: -16px;
+  left: -9px;
+  padding-left: 40%;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`
+
+export const ExtraDiv = styled.div`
+  display: ${props => props.display};
+  animation: ${FadeIn} 0.5s;
+`
+
+export const List = styled.li`
+  padding: 10px 0;
+  :hover {
+    background-color: ${props => props.bgColor};
+    color: ${props => props.color};
+    .nav-icons {
+      color: red;
+    }
+  }
+`
+export const Para = styled.p`
+  position: absolute;
+  top: 45px;
+  right: 50px;
+  color: ${props => props.color};
 `

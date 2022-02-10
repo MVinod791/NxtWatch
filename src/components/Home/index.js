@@ -1,6 +1,6 @@
 import {Component} from 'react'
 
-import {AiFillHome} from 'react-icons/ai'
+import {AiOutlineClose} from 'react-icons/ai'
 import {HiFire} from 'react-icons/hi'
 import {SiYoutubegaming} from 'react-icons/si'
 import {CgPlayListAdd} from 'react-icons/cg'
@@ -22,32 +22,18 @@ import {
   InputSearch,
   SearchContainer,
   SearchButton,
+  CustomCloseButton,
+  BannerContainer,
 } from './styledComponents'
 import './index.css'
 
 class Home extends Component {
-  state = {searchInput: ''}
+  state = {searchInput: '', isClicked: false}
 
-  renderSideNavbar = () => (
-    <SideMenuContainer>
-      <SideNavItem>
-        <AiFillHome size="24" color="#424242" />
-        <ItemName>Home</ItemName>
-      </SideNavItem>
-      <SideNavItem>
-        <HiFire size="24" color="#424242" />
-        <ItemName>Trending</ItemName>
-      </SideNavItem>
-      <SideNavItem>
-        <SiYoutubegaming size="24" color="#424242" />
-        <ItemName>Gaming</ItemName>
-      </SideNavItem>
-      <SideNavItem>
-        <CgPlayListAdd size="24" color="#383838" />
-        <ItemName>Saved Videos</ItemName>
-      </SideNavItem>
-    </SideMenuContainer>
-  )
+  onCloseBanner = () => {
+    const {isClicked} = this.state
+    this.setState({isClicked: !isClicked})
+  }
 
   renderSearchInputFiled = () => {
     const {searchInput} = this.state
@@ -73,6 +59,7 @@ class Home extends Component {
   }
 
   render() {
+    const {isClicked} = this.state
     return (
       <ThemeContext.Consumer>
         {value => {
@@ -82,18 +69,31 @@ class Home extends Component {
             <div className={homeBgColor}>
               <AppContainer>
                 <HomeResponseContainer>
-                  {this.renderSideNavbar()}
                   <ContentContainer>
-                    <BannerBgContainer>
-                      <LogoImage
-                        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                        alt="website logo"
-                      />
-                      <CustomParagraph>
-                        By the Nxt Watch Premium prepaid plans with UPI
-                      </CustomParagraph>
-                      <CustomButton type="button">GET IT NOW</CustomButton>
-                    </BannerBgContainer>
+                    {isClicked ? (
+                      ''
+                    ) : (
+                      <BannerBgContainer>
+                        <BannerContainer>
+                          <LogoImage
+                            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                            alt="website logo"
+                          />
+
+                          <CustomParagraph>
+                            By the Nxt Watch Premium prepaid plans with UPI
+                          </CustomParagraph>
+                          <CustomButton type="button">GET IT NOW</CustomButton>
+                        </BannerContainer>
+                        <CustomCloseButton
+                          type="button"
+                          onClick={this.onCloseBanner}
+                        >
+                          <AiOutlineClose />
+                        </CustomCloseButton>
+                      </BannerBgContainer>
+                    )}
+
                     {this.renderSearchInputFiled()}
                   </ContentContainer>
                 </HomeResponseContainer>

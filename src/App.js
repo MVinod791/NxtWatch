@@ -5,6 +5,7 @@ import Home from './components/Home'
 import ProtectedRoute from './components/ProtectedRoute'
 import ThemeContext from './context/ThemeContext'
 import Header from './components/Header'
+import Navbar from './components/Navbar'
 
 import './App.css'
 
@@ -30,6 +31,7 @@ class App extends Component {
               <>
                 <Header />
                 <div className={`${bgColor} main-frame-container`}>
+                  <Navbar />
                   <div className="content">
                     <Switch>
                       <ProtectedRoute exact path="/" component={Home} />
