@@ -4,3 +4,10 @@
 .home-bg-light {
   background-color: #ffffff;
 }
+.line {
+  border: 1px solid #909090;
+  height: 34px;
+}
+.search-icon {
+  margin-right: 10px;
+}

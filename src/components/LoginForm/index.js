@@ -75,10 +75,9 @@ class LoginForm extends Component {
       <>
         <LabelName htmlFor="username">USERNAME</LabelName>
         <CustomInput
-          value={username}
           type="text"
           id="username"
-          placeholder="Username"
+          value={username}
           onChange={this.onChangeUsername}
         />
       </>
@@ -91,10 +90,9 @@ class LoginForm extends Component {
       <>
         <LabelName htmlFor="password">PASSWORD</LabelName>
         <CustomInput
-          value={password}
           type={visibility ? 'text' : 'password'}
           id="password"
-          placeholder="Password"
+          value={password}
           onChange={this.onChangePassword}
         />
       </>

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const DivContainer = styled.div`
   width: 25%;
   margin-left: 20px;
+  margin-top: -20px;
 `
 export const ListContainer = styled.ul`
   list-style-type: none;

@@ -1,11 +1,12 @@
 import {Component} from 'react'
-
+import Cookies from 'js-cookie'
 import {AiOutlineClose} from 'react-icons/ai'
 import {HiFire} from 'react-icons/hi'
 import {SiYoutubegaming} from 'react-icons/si'
 import {CgPlayListAdd} from 'react-icons/cg'
 import {BsSearch} from 'react-icons/bs'
 import Header from '../Header'
+
 import ThemeContext from '../../context/ThemeContext'
 
 import {
@@ -24,11 +25,49 @@ import {
   SearchButton,
   CustomCloseButton,
   BannerContainer,
+  UnorderList,
 } from './styledComponents'
 import './index.css'
+import VideoItems from '../VideoItems'
 
 class Home extends Component {
-  state = {searchInput: '', isClicked: false}
+  state = {
+    videosList: [],
+    searchInput: '',
+    isClicked: false,
+  }
+
+  componentDidMount() {
+    this.getHomeDetails()
+  }
+
+  getHomeDetails = async () => {
+    const jwtToken = Cookies.get('jwt_token')
+    const apiUrl = 'https://apis.ccbp.in/videos/all'
+    const options = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+      method: 'GET',
+    }
+    const response = await fetch(apiUrl, options)
+
+    if (response.ok) {
+      const data = await response.json()
+      console.log(data)
+      const updatesData = data.videos.map(eachData => ({
+        id: eachData.id,
+        name: eachData.channel.name,
+        profileImageUrl: eachData.channel.profile_image_url,
+        thumbnailUrl: eachData.thumbnail_url,
+        publishedAt: eachData.published_at,
+        title: eachData.title,
+        viewCount: eachData.view_count,
+      }))
+      console.log(updatesData)
+      this.setState({videosList: updatesData})
+    }
+  }
 
   onCloseBanner = () => {
     const {isClicked} = this.state
@@ -46,28 +85,31 @@ class Home extends Component {
           className="search-input"
           onChange={this.onChangeSearchInput}
         />
+        <hr className="line" />
         <SearchButton
           type="button"
           testid="searchButton"
           className="search-icon-btn"
           onClick={this.onEnterSearchInput}
         >
-          <BsSearch size="14" />
+          <BsSearch size={18} className="search-icon" />
         </SearchButton>
       </SearchContainer>
     )
   }
 
   render() {
-    const {isClicked} = this.state
+    const {isClicked, videosList} = this.state
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {isDarkTheme} = value
-          const homeBgColor = isDarkTheme ? 'home-bg-dark' : 'home-bg-light'
+          const {activeTheme} = value
+          const color = activeTheme === 'light' ? '#000000' : '#ffffff'
+
           return (
-            <div className={homeBgColor}>
+            <div className={color}>
               <AppContainer>
+                <Header />
                 <HomeResponseContainer>
                   <ContentContainer>
                     {isClicked ? (
@@ -95,6 +137,14 @@ class Home extends Component {
                     )}
 
                     {this.renderSearchInputFiled()}
+                    <UnorderList>
+                      {videosList.map(eachVideo => (
+                        <VideoItems
+                          videoDetails={eachVideo}
+                          key={eachVideo.id}
+                        />
+                      ))}
+                    </UnorderList>
                   </ContentContainer>
                 </HomeResponseContainer>
               </AppContainer>

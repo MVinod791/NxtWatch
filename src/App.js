@@ -6,7 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import ThemeContext from './context/ThemeContext'
 import Header from './components/Header'
 import Navbar from './components/Navbar'
-
+import VideoCard from './components/VideoCard'
 import './App.css'
 
 // Replace your code here
@@ -35,6 +35,11 @@ class App extends Component {
                   <div className="content">
                     <Switch>
                       <ProtectedRoute exact path="/" component={Home} />
+                      <ProtectedRoute
+                        exact
+                        path="/videos/:id"
+                        component={VideoCard}
+                      />
                     </Switch>
                   </div>
                 </div>

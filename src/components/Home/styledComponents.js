@@ -5,18 +5,16 @@ export const AppContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 10px;
 `
 
 export const HomeResponseContainer = styled.div`
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
-  display: flex;
-  justify-content: space-between;
 `
 
 export const SideMenuContainer = styled.ul`
-  width: 20%;
+  width: 25%;
   max-width: 250px;
   line-height: 0px;
   padding-left: 0px;
@@ -36,17 +34,23 @@ export const ItemName = styled.p`
   margin-left: 20px;
 `
 export const ContentContainer = styled.div`
-  width: 70%;
+  width: 90%;
   margin-left: 0px;
 `
 export const BannerContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 `
 export const BannerBgContainer = styled.div`
   background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
   background-size: cover;
   height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 `
 export const LogoImage = styled.img`
   width: 110px;
@@ -81,7 +85,7 @@ export const CustomCloseButton = styled.button`
   cursor: pointer;
   color: #424242;
   font-size: 20px;
-
+  text-align: right;
   font-weight: 500;
 `
 
@@ -96,6 +100,7 @@ export const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 30px;
+  height: 34px;
   margin-bottom: 30px;
 `
 
@@ -111,8 +116,15 @@ export const InputSearch = styled.input`
   font-weight: 500;
 `
 export const SearchButton = styled.button`
-  background-color: transparent;
+  background-color: #cccccc;
   border: none;
   outline: none;
   cursor: pointer;
+  height: 34px;
+  width: 20%;
+`
+export const UnorderList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
 `
