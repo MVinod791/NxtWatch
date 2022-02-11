@@ -6,7 +6,7 @@ import {MdPlaylistAdd} from 'react-icons/md'
 import {FiLogOut} from 'react-icons/fi'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {FaMoon} from 'react-icons/fa'
-import {BsBrightnessHigh, BsMoon} from 'react-icons/bs'
+import {BsBrightnessHigh} from 'react-icons/bs'
 
 import {ImCross} from 'react-icons/im'
 import {Link, withRouter} from 'react-router-dom'
@@ -22,7 +22,6 @@ import {
   LogOutDesktopButton,
   NavbarMobileContainer,
   MobileIconContainer,
-  ListItem,
   ButtonElSmall,
   ListContainer,
   List,

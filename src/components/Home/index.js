@@ -1,21 +1,16 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {AiOutlineClose} from 'react-icons/ai'
-import {HiFire} from 'react-icons/hi'
-import {SiYoutubegaming} from 'react-icons/si'
-import {CgPlayListAdd} from 'react-icons/cg'
+
 import {BsSearch} from 'react-icons/bs'
-import Header from '../Header'
+// import Header from '../Header'
 
 import ThemeContext from '../../context/ThemeContext'
 
 import {
   AppContainer,
-  SideMenuContainer,
   ContentContainer,
   HomeResponseContainer,
-  SideNavItem,
-  ItemName,
   BannerBgContainer,
   LogoImage,
   CustomParagraph,
@@ -54,7 +49,7 @@ class Home extends Component {
 
     if (response.ok) {
       const data = await response.json()
-      console.log(data)
+
       const updatesData = data.videos.map(eachData => ({
         id: eachData.id,
         name: eachData.channel.name,
@@ -64,7 +59,7 @@ class Home extends Component {
         title: eachData.title,
         viewCount: eachData.view_count,
       }))
-      console.log(updatesData)
+
       this.setState({videosList: updatesData})
     }
   }
@@ -109,7 +104,6 @@ class Home extends Component {
           return (
             <div className={color}>
               <AppContainer>
-                <Header />
                 <HomeResponseContainer>
                   <ContentContainer>
                     {isClicked ? (
