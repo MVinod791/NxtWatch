@@ -11,6 +11,10 @@ import {
   ListContainer,
   ListItems,
   SpanEl,
+  ContactContainer,
+  ContactMedia,
+  ContactImage,
+  ContactPara,
 } from './styledComponents'
 
 import './index.css'
@@ -57,6 +61,26 @@ const Navbar = () => (
               </ListItems>
             </Link>
           </ListContainer>
+          <ContactContainer>
+            <ContactPara color={`${color}`}>Contact</ContactPara>
+            <ContactMedia>
+              <ContactImage
+                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png "
+                alt="facebook logo"
+              />
+              <ContactImage
+                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png "
+                alt="facebook logo"
+              />
+              <ContactImage
+                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png "
+                alt="facebook logo"
+              />
+            </ContactMedia>
+            <ContactPara color={`${color}`}>
+              Enjoy Now to see channel and recommendations{' '}
+            </ContactPara>
+          </ContactContainer>
         </DivContainer>
       )
     }}

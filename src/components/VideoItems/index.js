@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-
+import ThemeContext from '../../context/ThemeContext'
 import {
   ListContainer,
   ImageTag,
@@ -9,8 +9,6 @@ import {
   ParaTag,
   Title,
 } from './styledComponents'
-
-import ThemeContext from '../../context/ThemeContext'
 
 const VideoItems = props => {
   const {videoDetails} = props

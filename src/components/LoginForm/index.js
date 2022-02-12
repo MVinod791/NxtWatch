@@ -119,7 +119,7 @@ class LoginForm extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {isDarkTheme} = value
+          const {activeTheme} = value
 
           return (
             <LoginFormContainer>

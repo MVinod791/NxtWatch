@@ -6,6 +6,7 @@ export const AppContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 10px;
+  min-height: 100vh;
 `
 
 export const HomeResponseContainer = styled.div`

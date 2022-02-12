@@ -4,6 +4,7 @@ import {AiOutlineClose} from 'react-icons/ai'
 
 import {BsSearch} from 'react-icons/bs'
 // import Header from '../Header'
+import VideoItems from '../VideoItems'
 
 import ThemeContext from '../../context/ThemeContext'
 
@@ -22,8 +23,8 @@ import {
   BannerContainer,
   UnorderList,
 } from './styledComponents'
+
 import './index.css'
-import VideoItems from '../VideoItems'
 
 class Home extends Component {
   state = {

@@ -12,7 +12,9 @@ const FadeIn = keyframes`
 export const NavBar = styled.nav`
   display: flex;
   justify-content: center;
-  padding: 10px;
+
+  height: 34px;
+  padding-top: 20px;
   width: 100%;
   background-color: ${props => props.bgColor};
   @media screen and (max-width: 767px) {
