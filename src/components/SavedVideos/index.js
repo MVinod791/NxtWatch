@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-import {MdPlaylistAdd} from 'react-icons/md'
+// import {MdPlaylistAdd} from 'react-icons/md'
 import {AiFillFire} from 'react-icons/ai'
 import ThemeContext from '../../context/ThemeContext'
 
@@ -24,7 +24,7 @@ const SavedVideos = () => (
     {value => {
       const {activeTheme, savedVideos} = value
 
-      const bgColor = activeTheme === 'light' ? '#f1f1f1' : '#000000'
+      const bgColor = activeTheme === 'light' ? '#ffffff' : '#000000'
       const color = activeTheme === 'light' ? '#000000' : '#ffffff'
       return (
         <SavedVideosContainer bgColor={bgColor} color={color}>
@@ -53,7 +53,7 @@ const SavedVideos = () => (
               </HeadingContainer>
 
               {savedVideos.map(eachData => (
-                <Link to={`/saved-videos/${eachData.id}`} key={eachData.id}>
+                <Link to={`/videos/${eachData.id}`} key={eachData.id}>
                   <CustomContainer>
                     <CustomImage
                       src={eachData.thumbnailUrl}

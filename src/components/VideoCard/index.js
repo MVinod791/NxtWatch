@@ -51,7 +51,7 @@ class VideoCard extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok === true) {
       const data = await response.json()
-      console.log(data)
+      // console.log(data)
       const updatesData = {
         name: data.video_details.channel.name,
         profileImageUrl: data.video_details.channel.profile_image_url,
@@ -64,7 +64,7 @@ class VideoCard extends Component {
         videoUrl: data.video_details.video_url,
         viewCount: data.video_details.view_count,
       }
-      console.log(updatesData)
+      // console.log(updatesData)
       this.setState({videoDetails: updatesData})
     }
   }

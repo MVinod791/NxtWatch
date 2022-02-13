@@ -8,11 +8,20 @@ import Header from './components/Header'
 import Navbar from './components/Navbar'
 import VideoCard from './components/VideoCard'
 import SavedVideos from './components/SavedVideos'
+import TrendingVideos from './components/TrendingVideos'
 import './App.css'
 
+const getCartListFromLocalStorage = () => {
+  const stringifiedCartList = localStorage.getItem('savedVideos')
+  const parsedCartList = JSON.parse(stringifiedCartList)
+  if (parsedCartList === null) {
+    return []
+  }
+  return parsedCartList
+}
 // Replace your code here
 class App extends Component {
-  state = {activeTheme: 'light', savedVideos: []}
+  state = {activeTheme: 'light', savedVideos: getCartListFromLocalStorage()}
 
   toggleTheme = activeTheme => {
     this.setState({activeTheme})
@@ -35,6 +44,8 @@ class App extends Component {
 
   render() {
     const {activeTheme, savedVideos} = this.state
+    localStorage.setItem('savedVideos', JSON.stringify(savedVideos))
+
     const bgColor = activeTheme === 'light' ? 'light' : 'dark'
     return (
       <ThemeContext.Provider
@@ -56,6 +67,11 @@ class App extends Component {
                   <div className="content">
                     <Switch>
                       <ProtectedRoute exact path="/" component={Home} />
+                      <ProtectedRoute
+                        exact
+                        path="/trending"
+                        component={TrendingVideos}
+                      />
                       <ProtectedRoute
                         exact
                         path="/saved-videos"
