@@ -112,19 +112,21 @@ class VideoCard extends Component {
       profileImageUrl,
       name,
       description,
-
+      id,
       subscriberCount,
     } = videoDetails
+    localStorage.setItem('liked', JSON.stringify(isLiked))
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {activeTheme, addToSavedVideos} = value
+          const {activeTheme, addToSavedVideos, removeSavedItems} = value
           const bgColor = activeTheme === 'light' ? '#ffffff' : '#000000'
           const color = activeTheme === 'light' ? '#000000' : '#ffffff'
 
           const onSave = () => {
             this.onClickSaved()
             addToSavedVideos(videoDetails)
+            // removeSavedItems(id)
           }
 
           return (
@@ -142,19 +144,19 @@ class VideoCard extends Component {
                 <ChannelContainer>
                   <IconsPara
                     onClick={this.onClickLiked}
-                    iconColor={isLiked ? '#3b82f6' : color}
+                    iconColor={isLiked ? '#2563eb' : '#64748b'}
                   >
                     <AiOutlineLike size={22} /> Likes
                   </IconsPara>
                   <IconsPara
                     onClick={this.onClickDisLiked}
-                    iconColor={isDisLiked ? '#3b82f6' : color}
+                    iconColor={isDisLiked ? '#2563eb' : '#64748b'}
                   >
                     <AiOutlineDislike size={22} /> Dislike
                   </IconsPara>
                   <IconsPara
                     onClick={onSave}
-                    iconColor={isSaved ? '#3b82f6' : color}
+                    iconColor={isSaved ? '#2563eb' : '#64748b'}
                   >
                     <MdPlaylistAdd size={22} /> {isSaved ? 'Saved' : 'Save'}
                   </IconsPara>
@@ -162,7 +164,7 @@ class VideoCard extends Component {
               </AttributesContainer>
               <hr className="hr-line" />
               <ChannelDetailsContainer>
-                <ProfileImage src={profileImageUrl} />
+                <ProfileImage src={profileImageUrl} alt="channel logo" />
                 <DivContainer>
                   <ParaTag>{name}</ParaTag>
                   <ParaTag>{subscriberCount} subscribers</ParaTag>

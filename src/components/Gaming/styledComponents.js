@@ -33,6 +33,7 @@ export const ParaTag = styled.p`
   border-radius: 100%;
   padding: 14px;
   margin-right: 10px;
+  margin-left: 20px;
 `
 export const ParaButton = styled.button`
   background-color: ${props => props.bgColor};
@@ -44,26 +45,28 @@ export const ParaButton = styled.button`
   outline: none;
 `
 
+export const CustomListContainer = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+`
+
 export const CustomContainer = styled.li`
   display: flex;
-  align-items: center;
-  padding: 20px;
-  list-style-type:none;
+  flex-direction: column;
+  margin-right: 20px;
 `
 export const CustomContainer2 = styled.div`
-  margin-top: -10px;
-  width: 400px;
+  margin-top: 0px;
 `
-export const TitlePara = styled.h1`
-  font-size: 18px;
+export const TitlePara = styled.p`
+  font-size: 16px;
   font-family: 'Roboto';
-  font-weight: 600;
+  font-weight: 500;
   color: ${props => props.color};
 `
-export const CustomImage = styled.img`
-  margin-right: 20px;
-  width: 370px;
-  height: 200px;
+export const CustomImg = styled.img`
+  width: 250px;
 `
 
 export const ProfileImage = styled.img`
@@ -96,4 +99,66 @@ export const NotFoundContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`
+export const LoaderContainer = styled.div`
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 767px) {
+    height: 95vh;
+  }
+`
+
+export const FailureViewContainer = styled.div`
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: ${props => props.bgColor};
+  color: ${props => props.color};
+`
+
+export const FailureImage = styled.img`
+  width: 300px;
+  border-radius: 0px;
+`
+
+export const FailureHeading = styled.h1`
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: ${props => props.color};
+`
+export const FailureDescription = styled.p`
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 32px;
+  color: ${props => props.color};
+  text-align: center;
+`
+export const FailureRetryButton = styled.button`
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #4f46e5;
+  border-radius: 4px;
 `

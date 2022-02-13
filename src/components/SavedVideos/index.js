@@ -17,6 +17,7 @@ import {
   NotFoundContainer,
   SavedVideosContainer,
   CustomHeading,
+  ParaButton,
 } from './styledComponents'
 
 const SavedVideos = () => (
@@ -41,34 +42,38 @@ const SavedVideos = () => (
             </NotFoundContainer>
           ) : (
             <MainContainer>
-              <HeadingContainer
-                bgColor={activeTheme === 'light' ? '#f1f1f1' : '#181818'}
-              >
-                <ParaTag
-                  bgColor={activeTheme === 'light' ? '#d7dfe9' : '#000000'}
+              <Link to="/saved-videos">
+                <HeadingContainer
+                  bgColor={activeTheme === 'light' ? '#f1f1f1' : '#181818'}
                 >
-                  <AiFillFire color="red" size={24} />
-                </ParaTag>
-                <CustomPara>Saved Videos</CustomPara>
-              </HeadingContainer>
-
-              {savedVideos.map(eachData => (
-                <Link to={`/videos/${eachData.id}`} key={eachData.id}>
-                  <CustomContainer>
-                    <CustomImage
-                      src={eachData.thumbnailUrl}
-                      alt={eachData.name}
-                    />
-                    <CustomContainer2>
-                      <TitlePara color={color}>{eachData.title}</TitlePara>
-                      <ParaItems color={color}>{eachData.name}</ParaItems>
-                      <ParaItems color={color}>
-                        {eachData.viewCount} Views . {eachData.publishedAt}
-                      </ParaItems>
-                    </CustomContainer2>
-                  </CustomContainer>
-                </Link>
-              ))}
+                  <ParaButton
+                    testid="theme"
+                    bgColor={activeTheme === 'light' ? '#d7dfe9' : '#000000'}
+                  >
+                    <AiFillFire color="red" size={24} />
+                  </ParaButton>
+                  <CustomPara color={color}>Saved Videos</CustomPara>
+                </HeadingContainer>
+              </Link>
+              <ul>
+                {savedVideos.map(eachData => (
+                  <Link to={`/videos/${eachData.id}`} key={eachData.id}>
+                    <CustomContainer>
+                      <CustomImage
+                        src={eachData.thumbnailUrl}
+                        alt="video thumbnail"
+                      />
+                      <CustomContainer2>
+                        <TitlePara color={color}>{eachData.title}</TitlePara>
+                        <ParaItems color={color}>{eachData.name}</ParaItems>
+                        <ParaItems color={color}>
+                          {eachData.viewCount} Views . {eachData.publishedAt}
+                        </ParaItems>
+                      </CustomContainer2>
+                    </CustomContainer>
+                  </Link>
+                ))}
+              </ul>
             </MainContainer>
           )}
         </SavedVideosContainer>

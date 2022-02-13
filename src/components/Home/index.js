@@ -39,7 +39,8 @@ class Home extends Component {
 
   getHomeDetails = async () => {
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = 'https://apis.ccbp.in/videos/all'
+    const {searchInput} = this.state
+    const apiUrl = `https://apis.ccbp.in/videos/all?search=${searchInput}`
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -84,11 +85,10 @@ class Home extends Component {
         <hr className="line" />
         <SearchButton
           type="button"
-          testid="searchButton"
           className="search-icon-btn"
           onClick={this.onEnterSearchInput}
         >
-          <BsSearch size={18} className="search-icon" />
+          <BsSearch size={18} className="search-icon" testid="searchButton" />
         </SearchButton>
       </SearchContainer>
     )
@@ -110,20 +110,21 @@ class Home extends Component {
                     {isClicked ? (
                       ''
                     ) : (
-                      <BannerBgContainer>
+                      <BannerBgContainer testid="banner">
                         <BannerContainer>
                           <LogoImage
                             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                            alt="website logo"
+                            alt="nxt watch logo"
                           />
 
                           <CustomParagraph>
-                            By the Nxt Watch Premium prepaid plans with UPI
+                            Buy Nxt Watch Premium
                           </CustomParagraph>
                           <CustomButton type="button">GET IT NOW</CustomButton>
                         </BannerContainer>
                         <CustomCloseButton
                           type="button"
+                          testid="close"
                           onClick={this.onCloseBanner}
                         >
                           <AiOutlineClose />

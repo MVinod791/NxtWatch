@@ -29,9 +29,13 @@ const VideoItems = props => {
         return (
           <Link to={`videos/${id}`}>
             <ListContainer>
-              <ImageTag src={thumbnailUrl} alt={name} width="250px" />
+              <ImageTag
+                src={thumbnailUrl}
+                alt="video thumbnail"
+                width="250px"
+              />
               <ListItem>
-                <ProfileImage src={profileImageUrl} alt={name} />
+                <ProfileImage src={profileImageUrl} alt="channel logo" />
                 <div>
                   <Title color={`${color}`}>{title}</Title>
                   <ParaTag color={`${color}`}>{name}</ParaTag>

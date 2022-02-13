@@ -9,6 +9,7 @@ import Navbar from './components/Navbar'
 import VideoCard from './components/VideoCard'
 import SavedVideos from './components/SavedVideos'
 import TrendingVideos from './components/TrendingVideos'
+import Gaming from './components/Gaming'
 import './App.css'
 
 const getCartListFromLocalStorage = () => {
@@ -42,6 +43,14 @@ class App extends Component {
     }
   }
 
+  removeSavedItems = id => {
+    const {savedVideos} = this.state
+    const updatedCartList = savedVideos.filter(
+      eachCartItem => eachCartItem.id !== id,
+    )
+    this.setState({savedVideos: updatedCartList})
+  }
+
   render() {
     const {activeTheme, savedVideos} = this.state
     localStorage.setItem('savedVideos', JSON.stringify(savedVideos))
@@ -54,6 +63,7 @@ class App extends Component {
           savedVideos,
           toggleTheme: this.toggleTheme,
           addToSavedVideos: this.addToSavedVideos,
+          removeSavedItems: this.removeSavedItems,
         }}
       >
         <>
@@ -72,6 +82,7 @@ class App extends Component {
                         path="/trending"
                         component={TrendingVideos}
                       />
+                      <ProtectedRoute exact path="/gaming" component={Gaming} />
                       <ProtectedRoute
                         exact
                         path="/saved-videos"

@@ -17,7 +17,7 @@ export const MainContainer = styled.div`
 `
 
 export const HeadingContainer = styled.div`
-  padding: 20px;
+  padding: 10px;
   background-color: ${props => props.bgColor};
   display: flex;
   align-items: center;
@@ -26,12 +26,14 @@ export const CustomPara = styled.h1`
   font-size: 24px;
   font-family: 'Roboto';
   font-weight: bold;
+  color: ${props => props.color};
 `
 export const ParaTag = styled.p`
   background-color: ${props => props.bgColor};
   border-radius: 100%;
   padding: 14px;
   margin-right: 10px;
+  margin-left: 20px;
 `
 export const CustomContainer = styled.div`
   display: flex;

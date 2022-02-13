@@ -3,8 +3,6 @@ import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {AiFillFire} from 'react-icons/ai'
 import {Link} from 'react-router-dom'
-
-// import FailureImage from '../FailureImage'
 import ThemeContext from '../../context/ThemeContext'
 
 import {
@@ -15,16 +13,20 @@ import {
   ParaTag,
   ParaItems,
   TitlePara,
-  CustomImage,
+  CustomImg,
   MainContainer,
   LoaderContainer,
+  CustomListContainer,
   SavedVideosContainer,
   FailureViewContainer,
   FailureImage,
   FailureHeading,
   FailureDescription,
   FailureRetryButton,
+  ParaButton,
 } from './styledComponents'
+
+import './index.css'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -33,21 +35,20 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-class TrendingVideos extends Component {
+class Gaming extends Component {
   state = {
-    trendingData: [],
+    gamesList: [],
     apiStatus: apiStatusConstants.initial,
   }
 
   componentDidMount() {
-    this.getTrendingData()
+    this.getGames()
   }
 
-  getTrendingData = async () => {
+  getGames = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
-
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = 'https://apis.ccbp.in/videos/trending'
+    const apiUrl = 'https://apis.ccbp.in/videos/gaming'
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -58,19 +59,16 @@ class TrendingVideos extends Component {
     // console.log(response)
     if (response.ok) {
       const data = await response.json()
-      // console.log(data)
-      const updatesData = data.videos.map(eachData => ({
+      //  console.log(data)
+      const updatesGamesData = data.videos.map(eachData => ({
         id: eachData.id,
-        name: eachData.channel.name,
-        profileImageUrl: eachData.channel.profile_image_url,
-        publishedAt: eachData.published_at,
         thumbnailUrl: eachData.thumbnail_url,
         title: eachData.title,
         viewCount: eachData.view_count,
       }))
-      // console.log(updatesData)
+      console.log(updatesGamesData)
       this.setState({
-        trendingData: updatesData,
+        gamesList: updatesGamesData,
         apiStatus: apiStatusConstants.success,
       })
     } else {
@@ -78,8 +76,8 @@ class TrendingVideos extends Component {
     }
   }
 
-  renderTrendingView = () => {
-    const {trendingData} = this.state
+  renderGamesDataView = () => {
+    const {gamesList} = this.state
     return (
       <ThemeContext.Consumer>
         {value => {
@@ -89,36 +87,37 @@ class TrendingVideos extends Component {
           return (
             <SavedVideosContainer bgColor={bgColor}>
               <MainContainer>
-                <Link to="/trending">
+                <Link to="/gaming">
                   <HeadingContainer
-                    testid="theme"
                     bgColor={activeTheme === 'light' ? '#f1f1f1' : '#181818'}
                   >
-                    <ParaTag
+                    <ParaButton
+                      testid="theme"
                       bgColor={activeTheme === 'light' ? '#d7dfe9' : '#000000'}
                     >
                       <AiFillFire color="red" size={24} />
-                    </ParaTag>
-                    <CustomPara color={color}>Trending</CustomPara>
+                    </ParaButton>
+                    <CustomPara color={color}>Gaming</CustomPara>
                   </HeadingContainer>
                 </Link>
-                {trendingData.map(eachData => (
-                  <Link to={`/videos/${eachData.id}`} key={eachData.id}>
-                    <CustomContainer>
-                      <CustomImage
-                        src={eachData.thumbnailUrl}
-                        alt="video thumbnail"
-                      />
-                      <CustomContainer2>
-                        <TitlePara color={color}>{eachData.title}</TitlePara>
-                        <ParaItems color={color}>{eachData.name}</ParaItems>
-                        <ParaItems color={color}>
-                          {eachData.viewCount} Views . {eachData.publishedAt}
-                        </ParaItems>
-                      </CustomContainer2>
-                    </CustomContainer>
-                  </Link>
-                ))}
+                <CustomListContainer>
+                  {gamesList.map(eachData => (
+                    <Link to={`/videos/${eachData.id}`} key={eachData.id}>
+                      <CustomContainer>
+                        <CustomImg
+                          src={eachData.thumbnailUrl}
+                          alt="video thumbnail"
+                        />
+                        <CustomContainer2>
+                          <TitlePara color={color}>{eachData.title}</TitlePara>
+                          <ParaItems color={color}>
+                            {eachData.viewCount} Views
+                          </ParaItems>
+                        </CustomContainer2>
+                      </CustomContainer>
+                    </Link>
+                  ))}
+                </CustomListContainer>
               </MainContainer>
             </SavedVideosContainer>
           )
@@ -161,11 +160,11 @@ class TrendingVideos extends Component {
     </ThemeContext.Consumer>
   )
 
-  renderTrendingList = () => {
+  renderGamesList = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiStatusConstants.success:
-        return this.renderTrendingView()
+        return this.renderGamesDataView()
       case apiStatusConstants.failure:
         return this.renderFailureView()
       case apiStatusConstants.inProgress:
@@ -176,8 +175,8 @@ class TrendingVideos extends Component {
   }
 
   render() {
-    return <>{this.renderTrendingList()}</>
+    return <div>{this.renderGamesList()}</div>
   }
 }
 
-export default TrendingVideos
+export default Gaming

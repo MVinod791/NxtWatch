@@ -45,8 +45,11 @@ export const ChannelContainer = styled.div`
   align-items: center;
 `
 
-export const IconsPara = styled.p`
+export const IconsPara = styled.button`
   cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
   color: ${props => props.iconColor};
   font-size: 14px;
   font-weight: 500;
